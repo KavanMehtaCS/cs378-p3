@@ -1,0 +1,28 @@
+/* 
+  Style your elements by creating CSS classes here.
+  Below, you can see an example of a class called "menu" that changes the color of the text to blue. Modify according to your needs.
+*/
+
+/* App.css */
+
+/* Center the menu container */
+.overall_container {
+  display: flex;
+  justify-content: center;
+}
+
+.menu {
+  display: flex;
+  flex-direction: column; /* Stack items vertically */
+  align-items: center; /* Center items horizontally */
+  margin-top: 2rem; /* Add space at the top */
+  padding: 0 10px; /* Optional: Add some padding to prevent items from touching the edges */
+  min-height: 100vh; /* Ensure the container takes full height of the screen */
+}
+
+/* Optional: Style for the title */
+h1 {
+  text-align: center;
+  margin-top: 20px;
+}
+

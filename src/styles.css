@@ -1,0 +1,119 @@
+/* Custom CSS for Campus Cafe Menu */
+
+/* General body styling */
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f8f9fa; /* Light gray background */
+    margin: 5%;
+    padding: 2%;
+  }
+  
+  /* Header section */
+  h1.display-4 {
+    margin-top: 10%;
+    font-weight: bold;
+    color: #343a40; /* Dark gray for title */
+    margin-bottom: 5%; /* Add some space below the title */
+  }
+
+  .img {
+    width: 50px;
+    height: auto; /* Maintain aspect ratio */
+    vertical-align: middle; /* Align the image vertically with the text */
+    margin-right: 10px; /* Add some space between the image and the text */
+  }
+  
+  p.lead {
+    color: #6c757d; /* Muted text for subtitle */
+    margin: 2%
+  }
+  
+  /* Card styling */
+  .card {
+    border: none; /* Remove default border */
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1); /* Subtle shadow for cards */
+  }
+  
+  .card-title {
+    font-size: 1rem;
+    font-weight: bold;
+    margin-bottom: 5%;
+  }
+  
+  .card-text {
+    color: #6c757d; /* Muted text for descriptions */
+    margin-bottom: 10%;
+    font-size: 12px;
+  }
+  
+  .card-body p.fw-bold {
+    flex-direction: column;
+    color: #212529; /* Darker text for prices */
+    margin-bottom: 1%;
+    display: inline-block; /* Align price and button inline */
+  }
+  
+  /* Button styling */
+  .btn-primary {
+    background-color: #007bff;
+    border-color: #007bff;
+    border-radius: 35%;
+    font-size: 10px;
+    display: inline-block; /* Align price and button inline */
+    margin-left: 15%; /* Add space between price and button */
+  }
+  
+  .btn-primary:hover {
+    background-color: #0056b3;
+  }
+  
+  /* Responsive adjustments */
+  @media (max-width: 768px) {
+    h1.display-4 {
+      font-size: 2rem;
+    }
+  
+    .card-title {
+      font-size: 1rem;
+    }
+  }
+
+.overall_container {
+  display: flex;
+  justify-content: center;
+}
+.secondary_container {
+  display: flex;
+  flex-direction: column;
+}
+
+.container {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  padding: 10px; /* Add padding to the container */
+}
+
+.menu-item {
+  width: 175px;
+  height: 125px;
+  padding: 1%;
+  object-fit: cover;
+  border-radius: 10px;
+  justify-content: space-between; /* Space between the image and the text */
+}
+
+.header {
+  padding: 60px;
+  text-align: center;
+  background: #1abc9c;
+  color: white;
+  font-size: 30px;
+}
+
+.cursive-text {
+  font-family: 'Brush Script MT', cursive; 
+  font-size: 1.5rem; 
+  font-weight: 400; 
+  color: #FF6347; 
+}
