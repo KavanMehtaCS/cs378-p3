@@ -2,6 +2,7 @@ import './App.css';
 import MenuItem from './components/MenuItem';
 import Header from './components/Header';
 import restaurantLogo from './restaurant-logo.png';
+import { useState } from 'react';
 
 import 'bootstrap/dist/css/bootstrap.min.css'; // This imports bootstrap css styles. You can use bootstrap or your own classes by using the className attribute in your elements.
 
@@ -82,14 +83,78 @@ const menuItems = [
 
 
 function App() {
+  const [cart, setCart] = useState({});
+  const [total, setTotal] = useState(0);
+
+  const addToCart = (id, price) => {
+    setCart((prevCart) => ({
+      ...prevCart,
+      [id]: (prevCart[id] || 0) + 1,
+    }));
+    setTotal((prevTotal) => prevTotal + price);
+  };
+
+  const removeFromCart = (id, price) => {
+    setCart((prevCart) => {
+      if (!prevCart[id]) return prevCart;
+      const updatedCart = { ...prevCart };
+      updatedCart[id]--;
+      if (updatedCart[id] === 0) delete updatedCart[id];
+      return updatedCart;
+    });
+  
+    // Ensure total doesn't go below zero
+    setTotal((prevTotal) => Math.max(0, prevTotal - price));
+  };
+
+  const clearCart = () => {
+    setCart({});
+    setTotal(0);
+  };
+
+  const handleOrder = () => {
+    if (Object.keys(cart).length === 0) {
+      alert("No items in cart");
+      return;
+    }
+
+    const orderSummary = menuItems
+      .filter((item) => cart[item.id]) // Only include items in the cart
+      .map((item) => `${cart[item.id]} ${item.title}`)
+      .join(", ");
+
+    alert(`Order placed!\n${orderSummary}`);
+  };
+
   return (
     <div>
-      <Header title="Campus Cafe" restaurantLogo={restaurantLogo} description1="Delicious, From-Scratch Recipes Close at Hand" description2 = "The Fresh Choice of UT!"/>
+      <Header 
+        title="Campus Cafe" 
+        restaurantLogo={restaurantLogo} 
+        description1="Delicious, From-Scratch Recipes Close at Hand" 
+        description2="The Fresh Choice of UT!" 
+      />
       <div className="overall_container">
         <div className="menu">
           {menuItems.map((item) => (
-            <MenuItem key={item.id} title={item.title} description={item.description} image={item.imageName} price={item.price} />
-            ))}
+            <MenuItem 
+              key={item.id} 
+              title={item.title} 
+              description={item.description} 
+              image={item.imageName} 
+              price={item.price} 
+              onAdd={() => addToCart(item.id, item.price)} 
+              onRemove={() => removeFromCart(item.id, item.price)} 
+              quantity={cart[item.id] || 0}
+            />
+          ))}
+        </div>
+      </div>
+      <div className="bottom_container">
+      <div className="cart-summary mt-4">
+          <h4>Subtotal: ${total.toFixed(2)}</h4>
+          <button className="btn btn-success me-2" onClick={handleOrder}>Order</button>
+          <button className="btn btn-danger" onClick={clearCart}>Clear All</button>
         </div>
       </div>
     </div>

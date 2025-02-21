@@ -1,11 +1,7 @@
 import React from 'react';
 import '../styles.css';
 
-// This is a functional component that represents a single menu item. It currently takes in the title and displays it in an h2 element.
-// Modify the component to take in all the other properties of a menu item you need and display them in the component.
-// Use bootstrap to style the elements so that it looks like the mockup in the assignment.
-// Hint: You can use the image name to get the image from the images folder.
-const MenuItem = ({ key, title, description, image, price }) => {
+const MenuItem = ({ title, description, image, price, onAdd, onRemove, quantity }) => {
   return (
     <div className="container mb-4">
       <div className="item">
@@ -14,8 +10,12 @@ const MenuItem = ({ key, title, description, image, price }) => {
       <div className="card-body">
         <h5 className="card-title">{title}</h5>
         <p className="card-text">{description}</p>
-        <p className="fw-bold">${price}</p>
-        <button className="btn btn-primary">Add</button>
+        <p className="fw-bold">${price.toFixed(2)}</p>
+        <div className="d-flex align-items-center">
+          <button className="btn btn-secondary me-2" onClick={onRemove} disabled={quantity === 0}>-</button>
+          <span>{quantity}</span>
+          <button className="btn btn-primary ms-2" onClick={onAdd}>+</button>
+        </div>
       </div>
     </div>
   );
